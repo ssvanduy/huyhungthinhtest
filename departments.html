@@ -37,6 +37,16 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+
+  <style>
+    .department-image img { cursor: pointer; transition: opacity 0.3s ease; }
+    .department-image img:hover { opacity: 0.8; }
+    .custom-modal { display: none; position: fixed; z-index: 9999; padding-top: 50px; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.85); }
+    .modal-content { margin: auto; display: block; max-width: 90%; max-height: 85vh; border-radius: 8px; object-fit: contain; animation-name: zoom; animation-duration: 0.4s; }
+    @keyframes zoom { from {transform: scale(0.6); opacity: 0;} to {transform: scale(1); opacity: 1;} }
+    .close-modal { position: absolute; top: 20px; right: 35px; color: #fff; font-size: 40px; font-weight: bold; transition: 0.3s; cursor: pointer; }
+    .close-modal:hover, .close-modal:focus { color: #bbb; text-decoration: none; cursor: pointer; }
+  </style>
 </head>
 
 <body class="departments-page">
@@ -48,7 +58,7 @@
         <div class="contact-info d-flex align-items-center">
           <i class="bi bi-envelope d-flex align-items-center"><a
               href="mailto:contact@example.com"><b>congtyhuyhungthinh@gmail.com</b></a></i>
-          <i class="bi bi-phone d-flex align-items-center ms-4"><span><b>097.606.7585</b></span></i>
+          <i class="bi bi-phone d-flex align-items-center ms-4"><span><b>08.6868.7585</b></span></i>
         </div>
         <div class="social-links d-none d-md-flex align-items-center">
           <a href="https://www.facebook.com/dienlanhhuysanyo" class="facebook"><i class="bi bi-facebook"></i></a>
@@ -600,7 +610,32 @@
               </div>
             </div>
           </div><!-- End Department Card -->
-
+            <div id="imageModal" class="custom-modal">
+              <span class="close-modal">&times;</span>
+              <img class="modal-content" id="zoomedImage">
+            </div>
+          
+            <!-- BƯỚC 3: CHÈN MÃ JAVASCRIPT VÀO ĐÂY (Ngay sau Modal) -->
+            <script>
+              document.addEventListener("DOMContentLoaded", function() {
+                const modal = document.getElementById("imageModal");
+                const modalImg = document.getElementById("zoomedImage");
+                const closeBtn = document.querySelector(".close-modal");
+                const images = document.querySelectorAll(".department-image img");
+          
+                images.forEach(function(img) {
+                  img.addEventListener("click", function() {
+                    modal.style.display = "flex"; 
+                    modalImg.src = this.src;      
+                  });
+                });
+          
+                closeBtn.addEventListener("click", function() { modal.style.display = "none"; });
+                modal.addEventListener("click", function(event) {
+                  if (event.target === modal) { modal.style.display = "none"; }
+                });
+              });
+            </script>
         </div>
 
       </div>
@@ -628,7 +663,7 @@
                 </div>
                 <div class="contact-item">
                   <i class="bi bi-telephone"></i>
-                  <span><b>097.606.7585</b></span>
+                  <span><b>08.6868.7585</b></span>
                 </div>
                 <div class="contact-item">
                   <i class="bi bi-envelope"></i>
